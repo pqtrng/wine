@@ -1,3 +1,7 @@
+-e .
+
+pandas
+sklearn
 matplotlib
 numpy
 pandas
@@ -5,3 +9,5 @@ seaborn
 sklearn
 numpy
 hydra-core
+black
+hydra_colorlog
