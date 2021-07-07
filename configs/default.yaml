@@ -1,11 +1,12 @@
-seed: 45
-
 data:
-  path: 'data/wine_quality.csv'
+  data_path: 'data'
+  file_name: 'wine_quality.csv'
   test_size: 0.2
+  seed: 45
 
 model:
   max_depth: 2
+  seed: 45
 
 visualization:
   image:
@@ -13,3 +14,13 @@ visualization:
     title_fs: 22
     style: "whitegrid"
     dpi: 120
+    x_size: [1, 10]
+    y_size: [1, 10]
+    color: 'black'
+    line_width: 1
+    limit_bottom: 2.5
+    limit_top: 8.5
+
+defaults:
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
