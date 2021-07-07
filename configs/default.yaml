@@ -1,0 +1,15 @@
+seed: 45
+
+data:
+  path: 'data/wine_quality.csv'
+  test_size: 0.2
+
+model:
+  max_depth: 2
+
+visualization:
+  image:
+    axis_fs: 18
+    title_fs: 22
+    style: "whitegrid"
+    dpi: 120
