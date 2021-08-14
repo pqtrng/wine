@@ -6,6 +6,6 @@ def get_model(max_depth, seed):
     return regr
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     model = get_model(max_depth=10, seed=100)
     print(model)
