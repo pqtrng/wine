@@ -43,13 +43,6 @@ test: develop lint
 	py.test .
 	@echo ""
 
-wandb:
-	@echo "Start WandB container"
-	docker pull wandb/local
-	docker stop wandb-local || true
-	wandb local
-	@echo "WandB is on"
-
-run: wandb
+run: clean
 	@echo "Train and evaluate model"
 	$(PYTHON_INTERPRETER) src/main.py

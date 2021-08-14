@@ -2,7 +2,6 @@ import logging
 from pathlib import Path
 
 import hydra
-import wandb
 from omegaconf import DictConfig
 from omegaconf import OmegaConf
 
@@ -20,21 +19,10 @@ def main(cfg: DictConfig):
 
     path = Path(hydra.utils.get_original_cwd())
 
-    wandb.init(
-        project=cfg.project.name,
-        name=cfg.project.model,
-        config={
-            "test_size": cfg.data.test_size,
-            "max_depth": cfg.model.max_depth,
-            "seed": cfg.data.seed,
-        },
-    )
-
     logger.info("Train model")
     X_train, y_train, X_test, y_test, model = train(
         current_path=path, data_config=cfg.data, model_config=cfg.model
     )
-    wandb.sklearn.plot_learning_curve(model, X_train, y_train)
 
     logger.info("Evaluate model")
     evaluate(
@@ -44,9 +32,6 @@ def main(cfg: DictConfig):
         y_test=y_test,
         model=model,
     )
-    wandb.sklearn.plot_summary_metrics(
-        model, X=X_train, y=y_train, X_test=X_test, y_test=y_test
-    )
 
     logger.info("Plot features")
     plot_feature(
@@ -54,7 +39,6 @@ def main(cfg: DictConfig):
         labels=X_train.columns,
         image_config=cfg.visualization.image,
     )
-    wandb.sklearn.plot_feature_importances(model, model.feature_importances_)
 
     logger.info("Plot residual")
     plot_residual(
@@ -63,7 +47,6 @@ def main(cfg: DictConfig):
         model=model,
         image_config=cfg.visualization.image,
     )
-    wandb.sklearn.plot_residuals(model, X_train, y_train)
 
 
 if __name__ == "__main__":
