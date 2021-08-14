@@ -1,4 +1,7 @@
 ---
+project:
+    name: 'wine'
+    model: 'RandomForestRegressor'
 data:
     data_path: 'data'
     file_name: 'wine_quality.csv'
@@ -6,6 +9,7 @@ data:
     seed: 45
 
 model:
+
     max_depth: 2
     seed: 45
 

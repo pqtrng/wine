@@ -11,6 +11,7 @@ help:
 	@echo "setup-git"
 	@echo "lint - check style with flake8"
 	@echo "test - run tests quickly with the default Python"
+	@echo "run - run train and evaluate model"
 
 clean:
 	rm -fr build/
@@ -41,3 +42,14 @@ test: develop lint
 	@echo "Running Python tests"
 	py.test .
 	@echo ""
+
+wandb:
+	@echo "Start WandB container"
+	docker pull wandb/local
+	docker stop wandb-local || true
+	wandb local
+	@echo "WandB is on"
+
+run: wandb
+	@echo "Train and evaluate model"
+	$(PYTHON_INTERPRETER) src/main.py
