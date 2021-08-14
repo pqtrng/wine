@@ -32,6 +32,7 @@ def plot_residual(x_test, y_test, model, image_config):
 
     plt.tight_layout()
     plt.savefig("residuals.png", dpi=image_config.dpi)
+    plt.close()
 
 
 def plot_feature(model, labels, image_config):
