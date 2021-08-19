@@ -1,0 +1,18 @@
+---
+name: model-wine-quality
+on: [push]
+jobs:
+    run:
+        runs-on: [ubuntu-latest]
+        container: docker://dvcorg/cml-py3:latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: cml_run
+              env:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  # Intall requirements
+                  make install-deps
+
+                  # Model train
+                  make run
