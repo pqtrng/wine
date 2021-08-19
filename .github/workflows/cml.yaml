@@ -1,0 +1,30 @@
+---
+name: model-wine-quality
+on: [push]
+jobs:
+    run:
+        runs-on: [ubuntu-latest]
+        container: docker://dvcorg/cml-py3:latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: cml_run
+              env:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  # Intall requirements
+                  make install-deps
+
+                  # Model train
+                  make run
+
+                  echo "## Model metrics" > report.md
+                  echo "Add result to report"
+                  find outputs -name metrics.txt -exec cat {} >> report.md \;
+
+                  echo "## Data viz" >> report.md
+                  echo "Add feature figure to report"
+                  find outputs -name feature_importance.png -exec cml-publish {} --md  >> report.md \;
+                  echo "Add residual figure to report"
+                  find outputs -name residuals.png -exec cml-publish {} --md  >> report.md \;
+
+                  cml-send-comment report.md
