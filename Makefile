@@ -11,6 +11,7 @@ help:
 	@echo "setup-git"
 	@echo "lint - check style with flake8"
 	@echo "test - run tests quickly with the default Python"
+	@echo "run - run train and evaluate model"
 
 clean:
 	rm -fr build/
@@ -41,3 +42,7 @@ test: develop lint
 	@echo "Running Python tests"
 	py.test .
 	@echo ""
+
+run: clean
+	@echo "Train and evaluate model"
+	$(PYTHON_INTERPRETER) src/main.py
