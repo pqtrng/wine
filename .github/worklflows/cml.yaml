@@ -16,3 +16,6 @@ jobs:
 
                   # Model train
                   make run
+
+                  echo "MODEL METRICS"
+                  find outputs -name metrics.txt -exec cat {} \;
