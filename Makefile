@@ -14,6 +14,7 @@ help:
 	@echo "run - run train and evaluate model"
 
 clean:
+	rm -fr data/
 	rm -fr build/
 	rm -fr dist/
 	rm -fr *.egg-info
@@ -24,6 +25,7 @@ setup-git: install-pre-commit
 	git config branch.autosetuprebase always
 
 install-deps:
+	pip install --upgrade pip
 	pip install -U pip setuptools wheel
 	pip install -r requirements/requirements.txt
 	pip install -r requirements/test-requirements.txt
@@ -43,6 +45,10 @@ test: develop lint
 	py.test .
 	@echo ""
 
-run: clean
+data: clean
+	@echo "Download data"
+	$(PYTHON_INTERPRETER) src/get_data.py
+
+run: data
 	@echo "Train and evaluate model"
 	$(PYTHON_INTERPRETER) src/main.py

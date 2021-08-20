@@ -2,10 +2,10 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 
-def get_data(data_path, test_size, seed):
+def get_data(data_path, test_size, delimiter, seed):
 
     # Load in the data
-    df = pd.read_csv(data_path)
+    df = pd.read_csv(data_path, delimiter=delimiter)
 
     # Split into train and test sections
     y = df.pop("quality")
