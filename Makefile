@@ -43,6 +43,10 @@ test: develop lint
 	py.test .
 	@echo ""
 
-run: clean
+data: clean
+	@Get data from remote
+	dvc pull
+
+run: data
 	@echo "Train and evaluate model"
 	$(PYTHON_INTERPRETER) src/main.py
