@@ -44,8 +44,8 @@ test: develop lint
 	@echo ""
 
 data: clean
-	@Get data from remote
-	dvc pull
+	@echo "Get data from remote"
+	$(PYTHON_INTERPRETER)  src/download_data.py
 
 run: data
 	@echo "Train and evaluate model"
