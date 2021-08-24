@@ -10,7 +10,7 @@ def train(current_path, data_config, model_config):
             current_path, data_config.data_path, data_config.file_name
         ),
         test_size=data_config.test_size,
-        delimiter=data_config.delimiter,
+        sep=data_config.sep,
         seed=data_config.seed,
     )
 

@@ -46,8 +46,8 @@ test: develop lint
 	@echo ""
 
 data: clean
-	@echo "Download data"
-	$(PYTHON_INTERPRETER) src/get_data.py
+	@echo "Get data from remote"
+	$(PYTHON_INTERPRETER)  src/download_data.py
 
 run: data
 	@echo "Train and evaluate model"

@@ -1,6 +1,6 @@
 -e .
 black
-dvc
+dvc[all]
 hydra-core
 hydra_colorlog
 matplotlib

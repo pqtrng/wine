@@ -5,7 +5,7 @@ project:
 data:
     data_path: 'data'
     file_name: 'wine_quality.csv'
-    delimiter: ";"
+    sep: ";"
     test_size: 0.2
     seed: 45
 
