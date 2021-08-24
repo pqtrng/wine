@@ -1,5 +1,4 @@
 import logging
-import pickle
 from pathlib import Path
 
 import hydra
@@ -10,6 +9,7 @@ from src.evaluate import evaluate
 from src.plot import plot_feature
 from src.plot import plot_residual
 from src.train import train
+from src.utils import save_model
 
 logger = logging.getLogger(__name__)
 
@@ -50,8 +50,7 @@ def main(cfg: DictConfig):
     )
 
     logger.info("Write model to a file")
-
-    pickle.dump(model, open("model.pkl", "wb"))
+    save_model(model=model)
 
 
 if __name__ == "__main__":

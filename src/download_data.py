@@ -22,9 +22,10 @@ def download_dataset(url=DATASET_URL, filename=LOCAL_FILE_NAME):
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     logging.info("Started download script")
+    directory = "data"
 
     if check_execution_path():
-        create_folder()
+        create_folder(directory=directory)
         download_dataset()
 
     logging.info("Finished download script")

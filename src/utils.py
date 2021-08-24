@@ -1,19 +1,19 @@
 import logging
 import os
+import pickle
 
 
-def create_folder():
-    """Creates a data folder if it doesn't exist.
+def create_folder(directory):
+    """Creates a folder if it doesn't exist.
 
     Returns:
         None
     """
-    directory = "data/"
     if not os.path.exists(directory):
         os.makedirs(directory)
-        logging.info("Data folder created.")
+        logging.info(f"{directory} folder created.")
     else:
-        logging.info("Data folder already existed.")
+        logging.info(f"{directory} folder already existed.")
 
 
 def check_execution_path():
@@ -31,3 +31,7 @@ def check_execution_path():
         )
         return False
     return True
+
+
+def save_model(model):
+    pickle.dump(model, open("model.pkl", "wb"))

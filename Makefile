@@ -14,6 +14,7 @@ help:
 	@echo "run - run train and evaluate model"
 
 clean:
+	rm -fr data/
 	rm -fr build/
 	rm -fr dist/
 	rm -fr *.egg-info
