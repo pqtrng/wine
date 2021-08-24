@@ -1,4 +1,5 @@
 import logging
+import pickle
 from pathlib import Path
 
 import hydra
@@ -47,6 +48,10 @@ def main(cfg: DictConfig):
         model=model,
         image_config=cfg.visualization.image,
     )
+
+    logger.info("Write model to a file")
+
+    pickle.dump(model, open("model.pkl", "wb"))
 
 
 if __name__ == "__main__":
