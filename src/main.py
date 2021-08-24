@@ -9,6 +9,7 @@ from src.evaluate import evaluate
 from src.plot import plot_feature
 from src.plot import plot_residual
 from src.train import train
+from src.utils import save_model
 
 logger = logging.getLogger(__name__)
 
@@ -47,6 +48,9 @@ def main(cfg: DictConfig):
         model=model,
         image_config=cfg.visualization.image,
     )
+
+    logger.info("Write model to a file")
+    save_model(model=model)
 
 
 if __name__ == "__main__":
